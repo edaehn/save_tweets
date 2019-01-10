@@ -22,7 +22,7 @@ from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 from tweepy.streaming import Stream
 import urllib
-import os.path
+import os
 import time
 import signal
 import codecs
@@ -56,6 +56,11 @@ try:
 except:
 	pass
 
+
+############ Creating output directories if needed
+for dir_is_needed, directory in zip([SAFE_CSV, SAFE_JSON],['./output/csv/','./output/json/']):
+	if dir_is_needed and not os.path.exists(directory):
+		os.makedirs(directory)	
 
 ############ Checking if CSV output files exist, otherwise we create it with headers
 if SAFE_CSV:
